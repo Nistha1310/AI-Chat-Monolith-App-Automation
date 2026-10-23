@@ -1,0 +1,74 @@
+{
+"version": "0.2.0",
+"configurations": [
+{
+"name": "Check: Cucumber dry-run",
+"type": "node",
+"request": "launch",
+"program": "${workspaceFolder}/node_modules/@cucumber/cucumber/bin/cucumber-js",
+"args": ["--dry-run", "features//*.feature", "--require", "steps//*.ts"],
+"console": "integratedTerminal",
+"internalConsoleOptions": "neverOpen"
+},
+{
+"name": "Check: Playwright discovery",
+"type": "node",
+"request": "launch",
+"program": "${workspaceFolder}/node_modules/playwright/cli.js",
+"args": ["test", "--list"],
+"console": "integratedTerminal",
+"internalConsoleOptions": "neverOpen"
+},
+{
+"name": "Check: AI evaluator unit tests",
+"type": "node",
+"request": "launch",
+"program": "${workspaceFolder}/node_modules/playwright/cli.js",
+"args": ["test", "tests/unit"],
+"console": "integratedTerminal",
+"internalConsoleOptions": "neverOpen"
+},
+{
+"name": "Live: Debug current Playwright spec",
+"type": "node",
+"request": "launch",
+"program": "${workspaceFolder}/node_modules/playwright/cli.js",
+"args": ["test", "${relativeFile}", "--headed", "--workers=1"],
+"env": {
+"PWDEBUG": "1"
+},
+"console": "integratedTerminal",
+"internalConsoleOptions": "neverOpen"
+},
+{
+"name": "Live: Debug Playwright by tag or title",
+"type": "node",
+"request": "launch",
+"program": "${workspaceFolder}/node_modules/playwright/cli.js",
+"args": ["test", "-g", "${command:SpecifyTarget}"],
+"env": {
+"PWDEBUG": "1"
+},
+"console": "integratedTerminal",
+"internalConsoleOptions": "neverOpen"
+},
+{
+"name": "Live: Debug current Cucumber feature",
+"type": "node",
+"request": "launch",
+"program": "${workspaceFolder}/node_modules/playwright-bdd/dist/cli/index.js",
+"args": ["test", "${relativeFile}"],
+"console": "integratedTerminal",
+"internalConsoleOptions": "neverOpen"
+},
+{
+"name": "Live: Debug Cucumber by tag",
+"type": "node",
+"request": "launch",
+"program": "${workspaceFolder}/node_modules/playwright/cli.js",
+"args": ["test", "--grep", "${command:SpecifyTarget}"],
+"console": "integratedTerminal",
+"internalConsoleOptions": "neverOpen"
+}
+]
+}

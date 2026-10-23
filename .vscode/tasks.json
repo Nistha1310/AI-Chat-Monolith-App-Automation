@@ -1,0 +1,43 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Setup: project",
+      "type": "shell",
+      "command": "npm ci && node scripts/init-env.mjs",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Setup: install Chromium",
+      "type": "shell",
+      "command": "npx playwright install --with-deps chromium",
+      "problemMatcher": []
+    },
+    {
+      "label": "Check: scenario parity",
+      "type": "shell",
+      "command": "node scripts/check-scenario-parity.mjs",
+      "problemMatcher": []
+    },
+    {
+      "label": "Check: Cucumber dry-run",
+      "type": "shell",
+      "command": "npx bddgen --dry-run",
+      "problemMatcher": []
+    },
+    {
+      "label": "Check: all static checks",
+      "type": "shell",
+      "command": "npx tsc --noEmit && node scripts/check-scenario-parity.mjs && npx bddgen --dry-run",
+      "problemMatcher": [],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    }
+  ]
+}

@@ -16,11 +16,13 @@ export class LoginPage {
     await this.page.getByRole('button', { name: 'Continue with SSO' }).press('Enter');
   }
 
-  async loginWithSSO(username: string, pass: string) {
+  async enterEmail(username: string) {
     await expect(this.page.getByRole('heading', { name: 'Sign in' })).toBeVisible();
     await this.page.getByPlaceholder('Email, phone, or Skype').fill(username);
     await this.page.getByRole('button', { name: 'Next' }).press('Enter');
-    
+  }
+
+  async enterPassword(pass: string) {
     await expect(this.page.getByPlaceholder('Password')).toBeVisible();
     await this.page.getByPlaceholder('Password').fill(pass);
     await this.page.getByRole('button', { name: 'Sign in' }).press('Enter');
